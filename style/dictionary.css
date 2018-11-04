@@ -1,0 +1,38 @@
+/**
+ * ./style/dictionary.css
+ * Stylesheet for interactive dictionary
+ * for: <https://github.com/lduran2/js-jquery-dictionary>
+ * date: 2018-11-04 T12:13
+ * by: Leomar Durán <https://github.com/lduran2>
+ */
+
+/* fonts and colors */
+html {
+	font-weight: bold;
+	font-size: 1.5em;
+	font-family: helvetica, arial, sans-serif;
+}
+
+body {
+	color: green;
+	background: #ff9;
+}
+
+h1 {
+	color: red;
+	background: #ff9;
+}
+
+dfn {
+	font-style: normal;
+}
+
+a {
+	color: #00e;
+	background: #ff9;
+}
+
+/* dictionary list layout */
+dl {
+	width: 40%;
+}
