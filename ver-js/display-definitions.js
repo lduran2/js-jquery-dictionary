@@ -1,3 +1,12 @@
+/*
+ * ./ver-js/display-definitions.css
+ * Places the definitions into a display area with the terms acting as
+ * tabs.
+ * for: <https://github.com/lduran2/js-jquery-dictionary>
+ * date: 2018-11-04 T13:09
+ * by: Leomar Durán <https://github.com/lduran2>
+ */
+
 /* Add the event after the document's loaded */
 window.addEventListener('load', function (e) {
 	/* the first dictionary list */
@@ -17,8 +26,8 @@ window.addEventListener('load', function (e) {
 			addClass(e.currentTarget, 'selected');
 			/* update the previousTerm */
 			previousTerm = e.currentTarget;
-		});
-	}
+		}/* end void #openDefintion(Event) */);
+	} /* next k */
 
 	/**************************************************************//**
 	 * Adds the given new class to the specified element.
@@ -38,5 +47,5 @@ window.addEventListener('load', function (e) {
 	 */
 	function removeClass(el, oldClass) {
 		el.className = '';
-	}
+	} /* end void #removeClass(Element, string) */
 });
