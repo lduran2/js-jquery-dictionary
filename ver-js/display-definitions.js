@@ -3,7 +3,7 @@
  * Places the definitions into a display area with the terms acting as
  * tabs
  * for: <https://github.com/lduran2/js-jquery-dictionary>
- * date: 2018-11-04 T13:27
+ * date: 2018-11-04 T18:10
  * by: Leomar Durán <https://github.com/lduran2>
  */
 
@@ -17,15 +17,24 @@ window.addEventListener('load', function (e) {
 	/* all terms in the first dictionary */
 	const terms = dictionary.getElementsByTagName('dt');
 	/* term previously opened */
-	let previousTerm = terms[0];
+	let previousTerm = null;
 
 	for (let k = 0, len = terms.length; (k < len); ++k) {
 		terms[k].addEventListener('click', function (e) {
-			/* close the previous class */
-			removeClass(previousTerm, 'selected');
-			addClass(e.currentTarget, 'selected');
-			/* update the previousTerm */
-			previousTerm = e.currentTarget;
+			/* close the previous definition if it exists */
+			if (previousTerm !== null) {
+				removeClass(previousTerm, 'selected');
+			} /* end if (previousTerm !== null) */
+			/* null out previousTerm if the previous term clicked was this current term */
+			if (previousTerm === e.currentTarget) {
+				previousTerm = null;
+			} /* end if (previousTerm === e.currentTarget) */
+			else {
+				/* open the current definition */
+				addClass(e.currentTarget, 'selected');
+				/* update the previousTerm */
+				previousTerm = e.currentTarget;
+			} /* end else (previousTerm === e.currentTarget) */
 		}/* end void #openDefintion(Event) */);
 	} /* next k */
 
