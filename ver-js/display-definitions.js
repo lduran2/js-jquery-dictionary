@@ -3,7 +3,7 @@
  * Places the definitions into a display area with the terms acting as
  * tabs.
  * for: <https://github.com/lduran2/js-jquery-dictionary>
- * date: 2018-11-04 T13:25
+ * date: 2018-11-04 T13:27
  * by: Leomar Durán <https://github.com/lduran2>
  */
 
@@ -36,7 +36,12 @@ window.addEventListener('load', function (e) {
 	 *   newClass :string = new class to add
 	 */
 	function addClass(el, newClass) {
-		el.className = [el.className, newClass].join(' ');
+		/* split class list as space separated */
+		const elClasses = el.className.split(/\s+/);
+		/* find and remove the old class */
+		elClasses.push(newClass);
+		/* join the class list */
+		el.className = elClasses.join(' ');
 	} /* end void #addClass(Element, string) */
 
 	/**************************************************************//**
@@ -46,8 +51,11 @@ window.addEventListener('load', function (e) {
 	 *   newClass :string = old class to remove
 	 */
 	function removeClass(el, oldClass) {
+		/* split class list as space separated */
 		const elClasses = el.className.split(/\s+/);
+		/* find and remove the old class */
 		elClasses.splice(elClasses.indexOf(oldClass), 1);
+		/* join the class list */
 		el.className = elClasses.join(' ');
 	} /* end void #removeClass(Element, string) */
 });
