@@ -1,12 +1,16 @@
-/**
+/*
  * ./style/dictionary.css
  * Stylesheet for interactive dictionary
  * for: <https://github.com/lduran2/js-jquery-dictionary>
- * date: 2018-11-04 T12:13
+ * date: 2018-11-04 T12:45
  * by: Leomar Durán <https://github.com/lduran2>
  */
+@charset 'utf-8';
 
-/* fonts and colors */
+/*
+ * fonts and colors
+ */
+
 html {
 	font-weight: bold;
 	font-size: 1.5em;
@@ -32,7 +36,20 @@ a {
 	background: #ff9;
 }
 
-/* dictionary list layout */
+/*
+ * dictionary list layout
+ */
+
 dl {
 	width: 40%;
+}
+
+/*
+ * styles for display-definitions.js
+ */
+
+/* hide defintions*/
+.display-definitions dd {
+	position: absolute;
+	left: -999em;
 }
