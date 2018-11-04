@@ -1,7 +1,7 @@
 /*
  * ./ver-js/display-definitions.css
  * Places the definitions into a display area with the terms acting as
- * tabs.
+ * tabs
  * for: <https://github.com/lduran2/js-jquery-dictionary>
  * date: 2018-11-04 T13:27
  * by: Leomar Durán <https://github.com/lduran2>
@@ -32,30 +32,45 @@ window.addEventListener('load', function (e) {
 	/**************************************************************//**
 	 * Adds the given new class to the specified element.
 	 * @param
-	 *   el :Element = element whose classes to modify
-	 *   newClass :string = new class to add
+	 *   el :Element = whose classes to modify
+	 *   newClass :string = the new class to add
 	 */
 	function addClass(el, newClass) {
-		/* split class list as space separated */
-		const elClasses = el.className.split(/\s+/);
-		/* find and remove the old class */
-		elClasses.push(newClass);
-		/* join the class list */
-		el.className = elClasses.join(' ');
+		changeClass(el, function (classes, newClass) {
+			classes.push(newClass);
+		}, newClass);
 	} /* end void #addClass(Element, string) */
 
 	/**************************************************************//**
 	 * Removes the given class from the specified element.
 	 * @param
-	 *   el :Element = element whose class to modify
-	 *   newClass :string = old class to remove
+	 *   el :Element = whose class to modify
+	 *   newClass :string = the old class to remove
 	 */
 	function removeClass(el, oldClass) {
+		changeClass(el, function (classes, oldClass) {
+			classes.splice(classes.indexOf(oldClass), 1);
+		}, oldClass);
+	} /* end void #removeClass(Element, string) */
+
+	/**************************************************************//**
+	 * Applies the given function to the class list of the given
+	 * element using the given difference
+	 * @param
+	 *   el :Element = whose class to modify
+	 *   func :function<Element, string>
+	 *     = to apply to the class list and given difference
+	 *   diff :string = the difference to apply
+	 */
+	function changeClass(el, func, diff) {
 		/* split class list as space separated */
 		const elClasses = el.className.split(/\s+/);
-		/* find and remove the old class */
-		elClasses.splice(elClasses.indexOf(oldClass), 1);
+		/* change the class list with the difference */
+		func(elClasses, diff);
 		/* join the class list */
 		el.className = elClasses.join(' ');
-	} /* end void #removeClass(Element, string) */
+		console.log(el.className);
+	} /* end void
+	       #changeClass(Element, function<Element, string>, string) */
+
 });
