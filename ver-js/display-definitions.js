@@ -1,17 +1,24 @@
-/*
- * ./ver-js/display-definitions.css
- * Places the definitions into a display area with the terms acting as
- * tabs.
- * for: <https://github.com/lduran2/js-jquery-dictionary>
- * date: 2018-11-04 T12:57
- * by: Leomar Durán <https://github.com/lduran2>
- */
 /* Add the event after the document's loaded */
 window.addEventListener('load', function (e) {
 	/* the first dictionary list */
 	const dictionary = document.getElementsByTagName('dl')[0];
 	/* add the class 'display-definitions' to prepare for the script */
 	addClass(dictionary, 'display-definitions');
+
+	/* all terms in the first dictionary */
+	const terms = dictionary.getElementsByTagName('dt');
+	/* term previously opened */
+	let previousTerm = terms[0];
+
+	for (let k = 0, len = terms.length; k < len; ++k) {
+		terms[k].addEventListener('click', function (e) {
+			/* close the previous class */
+			removeClass(previousTerm, 'selected');
+			addClass(e.currentTarget, 'selected');
+			/* update the previousTerm */
+			previousTerm = e.currentTarget;
+		});
+	}
 
 	/**************************************************************//**
 	 * Adds the given new class to the specified element.
@@ -22,4 +29,14 @@ window.addEventListener('load', function (e) {
 	function addClass(el, newClass) {
 		el.className = newClass;
 	} /* end void #addClass(Element, string) */
+
+	/**************************************************************//**
+	 * Removes the given class from the specified element.
+	 * @param
+	 *   el :Element = element whose class to modify
+	 *   newClass :string = old class to remove
+	 */
+	function removeClass(el, oldClass) {
+		el.className = '';
+	}
 });

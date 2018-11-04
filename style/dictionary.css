@@ -22,7 +22,7 @@ body {
 	background: #ff9;
 }
 
-h1 {
+h1, .selected {
 	color: red;
 	background: #ff9;
 }
@@ -40,7 +40,7 @@ a {
  * dictionary list layout
  */
 
-dl {
+dt, dd {
 	width: 40%;
 }
 
@@ -52,4 +52,15 @@ dl {
 .display-definitions dd {
 	position: absolute;
 	left: -999em;
+	border: medium solid;
+}
+
+.display-definitions {
+	position: relative;
+}
+
+.selected + dd {
+	left: auto;
+	top: 0;
+	right: 0;
 }
