@@ -19,7 +19,7 @@ window.addEventListener('load', function (e) {
 	/* term previously opened */
 	let previousTerm = terms[0];
 
-	for (let k = 0, len = terms.length; k < len; ++k) {
+	for (let k = 0, len = terms.length; (k < len); ++k) {
 		terms[k].addEventListener('click', function (e) {
 			/* close the previous class */
 			removeClass(previousTerm, 'selected');
@@ -37,7 +37,10 @@ window.addEventListener('load', function (e) {
 	 */
 	function addClass(el, newClass) {
 		changeClass(el, function (classes, newClass) {
-			classes.push(newClass);
+			/* add new class if it is not already in the class list */
+			if (classes.indexOf(newClass) < 0) {
+				classes.push(newClass);
+			} /* end if (classes.indexOf(newClass) < 0) */
 		}, newClass);
 	} /* end void #addClass(Element, string) */
 
@@ -49,7 +52,10 @@ window.addEventListener('load', function (e) {
 	 */
 	function removeClass(el, oldClass) {
 		changeClass(el, function (classes, oldClass) {
-			classes.splice(classes.indexOf(oldClass), 1);
+			/* remove all instances of the old class */
+			for (let k; ((k = classes.indexOf(oldClass)) >= 0); ) {
+				classes.splice(k, 1);
+			} /* next k */
 		}, oldClass);
 	} /* end void #removeClass(Element, string) */
 
@@ -69,7 +75,6 @@ window.addEventListener('load', function (e) {
 		func(elClasses, diff);
 		/* join the class list */
 		el.className = elClasses.join(' ');
-		console.log(el.className);
 	} /* end void
 	       #changeClass(Element, function<Element, string>, string) */
 
